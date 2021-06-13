@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  northwinddb:
+    container_name: northwinddb
+    environment:
+      SA_PASSWORD: "SwN12345678"
+      ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+       - "1433:1433"
+
+  webapi:
+    container_name: webapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:NorthwindContext=Server=northwinddb;Database=Northwind;User Id=sa;Password=SwN12345678"
+    ports:
+      - "8005:80"

@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  northwinddb:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
+  webapi:
+    image: ${DOCKER_REGISTRY-}webapi
+    build:
+      context: .
+      dockerfile: src/Presentation/WebApi/Dockerfile
